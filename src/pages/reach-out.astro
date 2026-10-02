@@ -1,0 +1,29 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WorkshopCard from '../components/WorkshopCard.astro';
+import Doodle from '../components/Doodle.astro';
+const page = (await getEntry('pages', 'reach-out'))!;
+const { Content } = await render(page);
+---
+
+<BaseLayout {...page.data}>
+  <div class="page-width">
+    <section class="page-intro">
+      <p class="eyebrow">{page.data.eyebrow}</p>
+      <h1>{page.data.title}</h1>
+      <div class="prose intro-prose">
+        <Content />
+      </div>
+    </section>
+    <WorkshopCard full />
+    <section class="care-teaser">
+      <Doodle kind="star" />
+      <div>
+        <span class="status">In development</span>
+        <h2>Care kits</h2>
+        <p>We’re exploring art-filled care kits for pediatric patients.</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

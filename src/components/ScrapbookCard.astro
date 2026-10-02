@@ -1,0 +1,58 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  artwork: CollectionEntry<'art'>;
+  index: number;
+}
+const {
+  artwork: { data },
+  index,
+} = Astro.props;
+const source = data.image!;
+const full = await getImage({
+  src: source,
+  width: Math.min(source.width, 1920),
+  format: 'webp',
+  quality: 85,
+});
+const treatment = ['photo', 'graph', 'torn'][index % 3];
+---
+
+<figure class:list={['scrap-card', `scrap-card--${treatment}`]} data-scrap-card>
+  <span class="scrap-paper" aria-hidden="true"></span>
+  <span class="scrap-tape scrap-drift" aria-hidden="true"></span>
+  <a class="scrap-image-link" href={full.src} data-art-open aria-label={`Enlarge ${data.title}`}>
+    <Image
+      src={source}
+      alt={data.alt}
+      widths={[320, 640, 960]}
+      sizes="(max-width: 700px) 90vw, (max-width: 1000px) 65vw, 700px"
+      format="webp"
+      loading="lazy"
+    />
+    <span class="scrap-enlarge" aria-hidden="true">
+      ↗
+    </span>
+  </a>
+  <figcaption>
+    <h3 data-art-title>{data.title}</h3>
+    <p
+      class:list={['scrap-caption', { 'scrap-caption--handwritten': data.caption.length <= 120 }]}
+      data-art-caption
+    >
+      {data.caption}
+    </p>
+    <p class="scrap-credit" data-art-credit>
+      By {data.credit}
+    </p>
+    {data.download && (
+      <a class="scrap-download" href={data.download} download data-art-download>
+        Download printable <span aria-hidden="true">↓</span>
+      </a>
+    )}
+    <span class="scrap-caption-star" aria-hidden="true">
+      ✦
+    </span>
+  </figcaption>
+</figure>

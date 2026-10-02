@@ -1,0 +1,572 @@
+/* The scrapbook is isolated to Create; the shared shell keeps its existing type. */
+.scrapbook-page {
+  overflow: clip;
+  background: radial-gradient(ellipse at 76% 18%, #80709b0d, transparent 45%);
+}
+.scrapbook-intro {
+  position: relative;
+  padding-block: 4.5rem 3.5rem;
+}
+.scrapbook-intro-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  width: 72%;
+}
+.scrapbook-intro h1 {
+  max-width: 730px;
+}
+.scrapbook-intro .intro-prose {
+  max-width: 570px;
+}
+.scrap-decoration {
+  pointer-events: none;
+  user-select: none;
+}
+.scrap-decoration svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.scrap-decoration--rocket {
+  position: absolute;
+  width: 300px;
+  right: -10px;
+  top: 30px;
+}
+.scrap-drift {
+  translate: var(--scrap-x, 0px) var(--scrap-y, 0px);
+  transition: translate 180ms ease-out;
+}
+.scrapbook-gallery {
+  padding-bottom: 6rem;
+}
+.scrapbook-gallery-heading {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+.scrapbook-gallery-heading h2 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.scrapbook-heading-line {
+  height: 1px;
+  background: linear-gradient(90deg, var(--line), transparent);
+  flex: 1;
+}
+.scrapbook-gallery-heading .label {
+  font-size: 0.6rem;
+}
+.scrapbook-collection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 7%;
+  row-gap: 5rem;
+  padding: 4rem 2% 5rem;
+}
+.scrapbook-slot {
+  position: relative;
+  min-width: 0;
+  align-self: start;
+}
+.scrapbook-slot--0 {
+  grid-column: 1 / -1;
+  width: 68%;
+  margin-left: 7%;
+}
+.scrapbook-slot--1 {
+  margin-top: 1rem;
+}
+.scrapbook-slot--2 {
+  margin-top: 6rem;
+}
+.scrapbook-slot--0 .scrap-decoration--planet {
+  position: absolute;
+  width: 150px;
+  right: -210px;
+  top: 40%;
+  transform: rotate(12deg);
+}
+.scrapbook-slot--2 .scrap-decoration--trail {
+  position: relative;
+  width: 190%;
+  margin: 4rem 0 -2rem -95%;
+}
+.scrap-card,
+.scrapbook-empty {
+  position: relative;
+  isolation: isolate;
+  color: var(--ink);
+}
+.scrap-card {
+  padding: 1.1rem 1.1rem 1.5rem;
+  --paper-turn: -2deg;
+}
+.scrap-paper {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--paper);
+  transform: rotate(var(--paper-turn, -2deg));
+  box-shadow: 7px 16px 30px #0004;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+  pointer-events: none;
+  border: 1px solid #fff4;
+  border-radius: 2px;
+}
+.scrap-card--graph {
+  --paper-turn: 2deg;
+}
+.scrap-card--graph .scrap-paper {
+  background-color: #d9cde8;
+  background-image:
+    linear-gradient(#8a6dab22 1px, transparent 1px),
+    linear-gradient(90deg, #8a6dab22 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.scrap-card--torn {
+  --paper-turn: -3deg;
+}
+.scrap-card--torn .scrap-paper {
+  background: #eddbcb;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 98%,
+    96% 100%,
+    91% 98%,
+    85% 100%,
+    79% 98%,
+    74% 100%,
+    68% 98%,
+    60% 100%,
+    53% 98%,
+    45% 100%,
+    38% 98%,
+    31% 100%,
+    24% 98%,
+    17% 100%,
+    10% 98%,
+    4% 100%,
+    0 98%
+  );
+}
+.scrap-tape {
+  position: absolute;
+  z-index: 2;
+  top: -18px;
+  left: 38%;
+  width: 96px;
+  height: 33px;
+  transform: rotate(-8deg);
+  background: repeating-linear-gradient(90deg, #fff3 0 1px, transparent 1px 4px), #dfc497b8;
+  border-inline: 1px dashed #f1dfbfa8;
+  pointer-events: none;
+}
+.scrap-card--graph .scrap-tape {
+  background-color: #b5a0cca8;
+  left: 15%;
+  transform: rotate(13deg);
+}
+.scrap-card--torn .scrap-tape {
+  background-color: #e9b5c0a8;
+  left: 62%;
+  transform: rotate(-12deg);
+}
+.scrap-image-link {
+  position: relative;
+  display: block;
+  margin-top: 0.7rem;
+}
+.scrap-image-link img {
+  width: 100%;
+  height: auto;
+  background: #d5cfce;
+}
+.scrap-image-link:focus-visible,
+.scrap-card a:focus-visible {
+  outline-color: #4a365e;
+  outline-offset: 5px;
+}
+.scrap-enlarge {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: #121119dc;
+  color: #fff;
+  border: 1px solid #fff8;
+  border-radius: 50%;
+  font-size: 20px;
+}
+.scrap-card figcaption {
+  position: relative;
+  padding: 1.1rem 0.35rem 0;
+  overflow-wrap: anywhere;
+}
+.scrap-card h3 {
+  font-size: 1.3rem;
+  padding-right: 1.5rem;
+}
+.scrap-caption {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-top: 0.55rem;
+}
+.scrap-caption--handwritten {
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.scrap-credit {
+  margin-top: 0.8rem;
+  font-size: 0.78rem;
+  color: #554a60;
+}
+.scrap-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+  font-size: 0.83rem;
+  min-height: 44px;
+}
+.scrap-caption-star {
+  position: absolute;
+  top: 1rem;
+  right: 0.2rem;
+  color: #766143;
+  font-size: 1.15rem;
+  transition:
+    color 180ms,
+    text-shadow 180ms;
+}
+.scrap-card:focus-within .scrap-paper {
+  transform: translateY(-4px) rotate(var(--paper-turn));
+  box-shadow: 7px 20px 35px #0005;
+}
+.scrap-card:focus-within .scrap-caption-star {
+  color: #72501d;
+  text-shadow: 0 0 9px #cf8f46b0;
+}
+@media (hover: hover) {
+  .scrap-card:hover .scrap-paper {
+    transform: translateY(-4px) rotate(var(--paper-turn));
+    box-shadow: 7px 20px 35px #0005;
+  }
+  .scrap-card:hover .scrap-caption-star {
+    color: #72501d;
+    text-shadow: 0 0 9px #cf8f46b0;
+  }
+}
+.scrapbook-empty-scene {
+  position: relative;
+  padding: 4.5rem 0 3.5rem;
+}
+.scrapbook-empty-scene > .scrap-decoration--trail {
+  position: absolute;
+  inset: 7rem -2% auto;
+}
+.scrapbook-empty {
+  width: min(570px, 74%);
+  margin: 0 auto;
+  padding: 2.4rem 3rem 3rem;
+  text-align: center;
+}
+.scrapbook-empty .scrap-paper {
+  background-image: linear-gradient(90deg, transparent 95%, #b9ad8c20 95%);
+  background-size: 8px 100%;
+}
+.scrapbook-empty h3 {
+  font-size: clamp(1.65rem, 3vw, 2.2rem);
+  line-height: 1.15;
+}
+.scrapbook-empty p {
+  margin: 1.1rem auto 0;
+  max-width: 380px;
+  font-size: 0.94rem;
+  color: #574e60;
+}
+.empty-orbit {
+  display: block;
+  width: 75px;
+  height: 42px;
+  border: 1px solid #85749f;
+  border-radius: 50%;
+  transform: rotate(-24deg);
+  margin: 0 auto 1.5rem;
+}
+.empty-orbit span {
+  display: block;
+  transform: rotate(24deg);
+  font-size: 2.2rem;
+  line-height: 1;
+  color: #746086;
+}
+.empty-star {
+  position: absolute;
+  line-height: 1;
+  pointer-events: none;
+  filter: drop-shadow(3px 4px 0 #121119);
+}
+.empty-star--one {
+  left: -30px;
+  top: 35px;
+  color: var(--yellow);
+  font-size: 85px;
+  transform: rotate(-15deg);
+}
+.empty-star--two {
+  right: -30px;
+  bottom: 5px;
+  color: var(--pink);
+  font-size: 110px;
+  transform: rotate(13deg);
+}
+.art-viewer {
+  width: min(1200px, calc(100% - 40px));
+  max-height: calc(100dvh - 40px);
+  margin: auto;
+  padding: 1.2rem 1.5rem;
+  background: #1b1824;
+  color: var(--text);
+  border: 1px solid #776b8a;
+  border-radius: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.art-viewer::backdrop {
+  background: #0a0910ed;
+}
+html:has(.art-viewer[open]) {
+  overflow: hidden;
+}
+.art-viewer button {
+  font: inherit;
+  font-size: 0.86rem;
+  color: var(--text);
+  background: #302b3d;
+  border: 1px solid #766889;
+  border-radius: 4px;
+  padding: 0.55rem 0.9rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+.art-viewer button:hover {
+  background: #443850;
+}
+.art-viewer button:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 4px;
+}
+.viewer-toolbar,
+.viewer-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.viewer-count {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.viewer-close {
+  margin-left: auto;
+}
+.viewer-close span {
+  padding-left: 0.8rem;
+  font-size: 1.1rem;
+}
+.viewer-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 2rem;
+  padding-block: 1.2rem;
+}
+.viewer-image-wrap {
+  flex: 2.6 1 26rem;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+}
+.viewer-image {
+  width: 100%;
+  height: auto;
+  max-height: 70dvh;
+  object-fit: contain;
+}
+.viewer-details {
+  flex: 1 1 14rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.viewer-details h2 {
+  font-size: 1.65rem;
+}
+.viewer-details p {
+  margin-top: 0.9rem;
+}
+.viewer-details #viewer-caption {
+  font-size: 0.95rem;
+}
+.viewer-credit {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.viewer-download {
+  display: inline-block;
+  margin-top: 1rem;
+  padding-block: 0.4rem;
+  font-size: 0.86rem;
+  color: var(--yellow);
+}
+.viewer-error {
+  color: var(--yellow);
+  font-size: 0.85rem;
+}
+.art-viewer [hidden] {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .scrapbook-intro-copy {
+    width: 70%;
+  }
+  .scrap-decoration--rocket {
+    width: 245px;
+    right: -35px;
+    top: 55px;
+  }
+  .scrapbook-slot--0 {
+    width: 78%;
+    margin-left: 2%;
+  }
+  .scrapbook-slot--0 .scrap-decoration--planet {
+    width: 115px;
+    right: -140px;
+  }
+  .scrapbook-collection {
+    column-gap: 6%;
+  }
+}
+@media (max-width: 700px) {
+  .scrapbook-intro {
+    padding-block: 2.7rem 2.8rem;
+  }
+  .scrapbook-intro-copy {
+    width: 100%;
+  }
+  .scrapbook-intro h1 {
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
+    max-width: 90%;
+  }
+  .scrapbook-intro .intro-prose {
+    max-width: 77%;
+    font-size: 0.94rem;
+  }
+  .scrap-decoration--rocket {
+    width: 115px;
+    right: -28px;
+    top: auto;
+    bottom: -10px;
+  }
+  .scrapbook-gallery {
+    padding-bottom: 3rem;
+  }
+  .scrapbook-gallery-heading {
+    gap: 0.8rem;
+  }
+  .scrapbook-gallery-heading .label {
+    font-size: 0.5rem;
+  }
+  .scrapbook-collection {
+    grid-template-columns: 1fr;
+    row-gap: 4rem;
+    padding: 3rem 5% 1rem;
+  }
+  .scrapbook-slot--0,
+  .scrapbook-slot--1,
+  .scrapbook-slot--2 {
+    width: 100%;
+    margin: 0;
+    grid-column: 1;
+  }
+  .scrapbook-slot--0 .scrap-decoration--planet {
+    width: 60px;
+    right: -20px;
+    top: -40px;
+  }
+  .scrapbook-slot--2 .scrap-decoration--trail {
+    width: 100%;
+    margin: 2.5rem 0 -2rem;
+  }
+  .scrap-card {
+    padding: 0.75rem 0.75rem 1.2rem;
+    --paper-turn: -1deg;
+  }
+  .scrap-card--graph {
+    --paper-turn: 1deg;
+  }
+  .scrap-card--torn {
+    --paper-turn: -1.5deg;
+  }
+  .scrap-tape {
+    width: 72px;
+    height: 27px;
+    top: -14px;
+  }
+  .scrapbook-empty-scene {
+    padding-block: 3.8rem 2rem;
+  }
+  .scrapbook-empty {
+    width: 92%;
+    padding: 2.3rem 1.2rem;
+  }
+  .empty-star--one {
+    font-size: 53px;
+    left: -14px;
+    top: 25px;
+  }
+  .empty-star--two {
+    font-size: 70px;
+    right: -10px;
+    bottom: -15px;
+  }
+  .scrapbook-empty p {
+    font-size: 0.88rem;
+  }
+  .art-viewer {
+    width: calc(100% - 20px);
+    max-height: calc(100dvh - 20px);
+    padding: 0.8rem;
+  }
+  .viewer-body {
+    display: block;
+    gap: 1rem;
+  }
+  .viewer-details {
+    margin-top: 1rem;
+  }
+  .viewer-image {
+    max-height: 55dvh;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scrap-drift {
+    translate: none !important;
+  }
+  .scrap-card:hover .scrap-paper,
+  .scrap-card:focus-within .scrap-paper {
+    transform: rotate(var(--paper-turn));
+  }
+}

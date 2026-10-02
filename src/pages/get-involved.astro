@@ -1,0 +1,51 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InterestPanel from '../components/InterestPanel.astro';
+import Doodle from '../components/Doodle.astro';
+import AccentText from '../components/AccentText.astro';
+const page = (await getEntry('pages', 'get-involved'))!;
+const { Content } = await render(page);
+const paths = [
+  {
+    title: 'Art',
+    text: 'Help develop illustrations and creative learning materials.',
+    kind: 'planet',
+  },
+  {
+    title: 'Workshops',
+    text: 'Help prepare short lessons and hands-on activities.',
+    kind: 'spark',
+  },
+  {
+    title: 'Community hosting',
+    text: 'Explore hosting a workshop at a library or community space.',
+    kind: 'star',
+  },
+];
+---
+
+<BaseLayout {...page.data}>
+  <div class="page-width">
+    <section class="page-intro">
+      <p class="eyebrow">{page.data.eyebrow}</p>
+      <h1>
+        <AccentText text={page.data.title} word="involved" />
+      </h1>
+      <div class="prose intro-prose">
+        <Content />
+      </div>
+    </section>
+    <section class="involvement-grid" aria-label="Ways you might get involved">
+      {paths.map((item) => (
+        <article>
+          <Doodle kind={item.kind} />
+          <h2>{item.title}</h2>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </section>
+    <p class="opportunity-note">Roles and placements are not yet confirmed.</p>
+    <InterestPanel />
+  </div>
+</BaseLayout>

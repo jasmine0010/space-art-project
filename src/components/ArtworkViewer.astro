@@ -1,0 +1,32 @@
+<dialog class="art-viewer" aria-labelledby="viewer-title" aria-describedby="viewer-caption">
+  <div class="viewer-toolbar">
+    <p class="viewer-count" aria-live="polite" aria-atomic="true"></p>
+    <button type="button" class="viewer-close" autofocus>
+      Close <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="viewer-body">
+    <div class="viewer-image-wrap">
+      <img class="viewer-image" alt="" />
+    </div>
+    <div class="viewer-details">
+      <h2 id="viewer-title"></h2>
+      <p id="viewer-caption"></p>
+      <p class="viewer-credit"></p>
+      <a class="viewer-download" download hidden>
+        Download printable ↓
+      </a>
+      <p class="viewer-error" role="status" hidden>
+        This image couldn’t load. <a class="viewer-original">Open image directly</a>
+      </p>
+    </div>
+  </div>
+  <div class="viewer-navigation">
+    <button type="button" class="viewer-prev">
+      ← Previous
+    </button>
+    <button type="button" class="viewer-next">
+      Next →
+    </button>
+  </div>
+</dialog>

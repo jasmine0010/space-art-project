@@ -1,0 +1,40 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SpaceArt from '../components/SpaceArt.astro';
+const page = (await getEntry('pages', 'about'))!;
+const { Content } = await render(page);
+const { data: site } = (await getEntry('site', 'main'))!;
+---
+
+<BaseLayout {...page.data}>
+  <div class="page-width">
+    <section class="page-intro split-intro">
+      <div>
+        <p class="eyebrow">{page.data.eyebrow}</p>
+        <h1>{page.data.title}</h1>
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+      <SpaceArt compact />
+    </section>
+    <section class="mission-block">
+      <h2>Our mission</h2>
+      <p>{site.mission}</p>
+    </section>
+    <section class="learn-section" id="learn">
+      <div>
+        <p class="eyebrow">Learn</p>
+        <h2>Astronomy & cosmology</h2>
+      </div>
+      <div class="prose">
+        <p>
+          We’re interested in small research projects and open questions, from how other planetary
+          systems form to what we can learn about the early universe.
+        </p>
+        <p>This branch is starting small. We don’t have research findings to share yet.</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

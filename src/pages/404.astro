@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Doodle from '../components/Doodle.astro';
+---
+
+<BaseLayout title="A little lost in space" description="This page could not be found.">
+  <section class="closing page-width">
+    <Doodle kind="planet" />
+    <p class="eyebrow">404</p>
+    <h1>Page not found</h1>
+    <p>That address doesn’t lead to a page.</p>
+    <a class="button" href="/">
+      Back to Home
+    </a>
+  </section>
+</BaseLayout>

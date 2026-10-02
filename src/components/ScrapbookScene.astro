@@ -1,0 +1,97 @@
+---
+interface Props {
+  kind?: 'rocket' | 'trail' | 'planet';
+}
+const { kind = 'rocket' } = Astro.props;
+---
+
+<div class:list={['scrap-decoration', `scrap-decoration--${kind}`]} aria-hidden="true">
+  {kind === 'rocket' ? (
+    <svg viewBox="0 0 340 360" fill="none">
+      <path
+        class="pencil-trail"
+        d="M192 153C311 260 116 228 144 293C171 350 53 304 20 350"
+        stroke="#c9b3ed"
+        stroke-width="1.5"
+        stroke-dasharray="2 9"
+        stroke-linecap="round"
+      />
+      <g class="scrap-drift">
+        <g
+          transform="translate(105 4) rotate(32 77 94)"
+          stroke="#302a40"
+          stroke-width="2.5"
+          stroke-linejoin="round"
+        >
+          <path d="M57 137Q56 183 77 202Q99 174 96 137" fill="#f4e3a2" />
+          <path d="M67 144Q67 168 77 178Q88 161 86 144" fill="#e8aecb" stroke="none" />
+          <path d="M55 96L34 130L35 149L58 135M98 96L119 130L118 149L95 135" fill="#c9b3ed" />
+          <path d="M55 45L77 8L99 45V134H55Z" fill="#f4e3a2" />
+          <path d="M55 45L77 8L99 45L88 50L77 44L66 50Z" fill="#e5c7a6" />
+          <path d="M69 22L77 8L86 22Z" fill="#302a40" />
+          <path d="M66 51V118M88 51V118" stroke="#b39959" stroke-width="1.5" />
+          <path d="M55 118H99V130H55Z" fill="#c9b3ed" />
+          <path d="M55 130H99V140Q77 149 55 140Z" fill="#e8aecb" />
+          <circle cx="77" cy="78" r="12" fill="#302a40" />
+          <circle cx="77" cy="78" r="7" fill="#d2dfda" stroke="none" />
+          <path d="M74 74L77 72" stroke="white" stroke-linecap="round" />
+        </g>
+        <path d="M54 87L59 101L73 106L59 111L54 125L49 111L35 106L49 101Z" fill="#e8aecb" />
+        <path
+          d="M269 180V200M259 190H279"
+          stroke="#f4e3a2"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <circle cx="280" cy="70" r="3" fill="#c9b3ed" />
+      </g>
+    </svg>
+  ) : kind === 'planet' ? (
+    <svg viewBox="0 0 140 130" fill="none" class="scrap-drift">
+      <circle cx="70" cy="64" r="33" fill="#c9b3ed" stroke="#302a40" stroke-width="3" />
+      <path
+        d="M47 50Q70 34 90 51M46 62Q70 46 95 63"
+        stroke="#a58bc9"
+        stroke-width="7"
+        stroke-linecap="round"
+      />
+      <path
+        d="M40 55C-15 104 111 88 111 48C111 39 103 40 99 43M41 57C13 84 102 76 107 51"
+        stroke="#302a40"
+        stroke-width="10"
+      />
+      <path
+        d="M40 55C-15 104 111 88 111 48C111 39 103 40 99 43M41 57C13 84 102 76 107 51"
+        stroke="#f4e3a2"
+        stroke-width="6"
+      />
+      <path
+        d="M22 15V27M16 21H28M113 105V119M106 112H120"
+        stroke="#e8aecb"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 1000 190" fill="none" preserveAspectRatio="none">
+      <path
+        d="M6 149C157 15 308 174 455 97S791 24 994 127"
+        stroke="#c9b3ed"
+        stroke-opacity=".35"
+        stroke-dasharray="2 10"
+        stroke-linecap="round"
+      />
+      <path
+        d="M177 65L185 86L207 94L185 102L177 123L169 102L147 94L169 86Z"
+        fill="#f4e3a2"
+        fill-opacity=".7"
+      />
+      <circle cx="620" cy="56" r="4" fill="#c9b3ed" />
+      <path
+        d="M856 64L866 93L896 103L866 113L856 142L846 113L816 103L846 93Z"
+        stroke="#e8aecb"
+        stroke-opacity=".6"
+      />
+    </svg>
+  )}
+</div>

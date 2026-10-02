@@ -1,0 +1,51 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SpaceArt from '../components/SpaceArt.astro';
+import BranchCard from '../components/BranchCard.astro';
+import WorkshopCard from '../components/WorkshopCard.astro';
+const page = (await getEntry('pages', 'home'))!;
+const { Content } = await render(page);
+const { data: site } = (await getEntry('site', 'main'))!;
+---
+
+<BaseLayout {...page.data}>
+  <section class="hero page-width">
+    <div class="hero-copy">
+      <p class="eyebrow">{site.location}</p>
+      <h1>
+        Big <span class="word-glow">universe.</span>
+        <br />
+        <span class="highlight">
+          Bigger
+          <br />
+          <em class="type-accent motto-accent">imaginations.</em>
+        </span>
+      </h1>
+      <div class="hero-description">
+        <Content />
+      </div>
+      <a class="text-link hero-link" href="/about/">
+        About our association <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <SpaceArt />
+    <span class="hero-orbit" aria-hidden="true"></span>
+  </section>
+  <section class="branches page-width">
+    <div class="section-heading">
+      <h2>What we’re working on</h2>
+      <span class="section-index" aria-hidden="true">
+        01 — 03
+      </span>
+    </div>
+    <div class="branch-grid">
+      {site.branches.map((branch) => (
+        <BranchCard branch={branch} />
+      ))}
+    </div>
+  </section>
+  <div class="page-width workshop-wrap">
+    <WorkshopCard />
+  </div>
+</BaseLayout>

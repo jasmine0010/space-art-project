@@ -1,0 +1,19 @@
+---
+// Keep copy in its content file; accent just one word when it is present.
+interface Props {
+  text: string;
+  word: string;
+}
+const { text, word } = Astro.props;
+const index = word ? text.indexOf(word) : -1;
+---
+
+{index < 0 ? (
+  text
+) : (
+  <>
+    {text.slice(0, index)}
+    <em class="type-accent">{word}</em>
+    {text.slice(index + word.length)}
+  </>
+)}

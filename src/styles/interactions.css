@@ -1,0 +1,134 @@
+/* Optional decoration: the page stays complete without JavaScript. */
+@layer components {
+  .planet-play {
+    display: none;
+    position: absolute;
+    left: 32%;
+    top: 23%;
+    width: 43%;
+    height: 44%;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .space-art[data-interactive] .planet-play {
+    display: block;
+  }
+  .planet-play:focus-visible {
+    outline: 2px dashed var(--yellow);
+    outline-offset: 12px;
+  }
+  .planet-play-hint {
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+    color: var(--yellow);
+    font-size: 1.6rem;
+    opacity: 0;
+    transition: opacity 150ms;
+  }
+  .planet-play:is(:hover, :focus-visible) .planet-play-hint {
+    opacity: 1;
+  }
+  .planet-reaction {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .space-art[data-interactive] > svg {
+    translate: var(--scene-x, 0px) var(--scene-y, 0px);
+    transition: translate 300ms ease-out;
+  }
+  .little-ufo {
+    translate: calc(var(--scene-x, 0px) * -1.3) calc(var(--scene-y, 0px) * -1.3);
+    transition: translate 400ms ease-out;
+  }
+  .little-rocket {
+    translate: calc(var(--scene-x, 0px) * 0.7) calc(var(--scene-y, 0px) * 0.7);
+    transition: translate 350ms ease-out;
+  }
+  .planet-eye {
+    translate: var(--eye-x, 0px) var(--eye-y, 0px);
+    transition: translate 150ms ease-out;
+  }
+  .space-art.is-happy .planet-cheek {
+    fill: #fa84bb;
+  }
+  .space-sparkles {
+    position: absolute;
+    inset: 0;
+    overflow: clip;
+    pointer-events: none;
+  }
+  .space-spark {
+    position: absolute;
+    left: 54%;
+    top: 46%;
+    width: 1.2rem;
+    height: 1.2rem;
+    line-height: 1;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--yellow);
+    pointer-events: none;
+  }
+  .space-spark:nth-child(3n) {
+    color: var(--pink);
+  }
+  .space-spark:nth-child(3n + 1) {
+    color: var(--lavender);
+  }
+  .branch-card[data-tilt] {
+    --card-background: #201d2c;
+    --card-border: #61566f;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    isolation: isolate;
+  }
+  /* Only the decorative surface moves; text and link targets stay in place. */
+  .branch-card[data-tilt]::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--card-background);
+    border: 1px solid var(--card-border);
+    border-radius: inherit;
+    box-shadow: var(--card-shadow, none);
+    transform: perspective(850px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transition: transform 180ms ease-out;
+  }
+  .branch-card.pink[data-tilt] {
+    --card-background: var(--paper);
+    --card-border: var(--paper);
+    --card-shadow: 7px 8px 0 #09090d;
+  }
+  .branch-card.lavender[data-tilt] {
+    --card-background: #252135;
+  }
+  .branch-card:focus-within > .doodle {
+    filter: brightness(1.12);
+  }
+}
+
+@layer responsive {
+  @media (prefers-reduced-motion: reduce) {
+    .space-art[data-interactive] > svg,
+    .little-ufo,
+    .little-rocket,
+    .planet-eye {
+      translate: none;
+    }
+    .planet-reaction {
+      rotate: none !important;
+      scale: none !important;
+    }
+    .space-sparkles {
+      display: none;
+    }
+  }
+}

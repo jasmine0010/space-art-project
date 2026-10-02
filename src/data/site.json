@@ -1,0 +1,50 @@
+{
+  "name": "[Organization Name TBD]",
+  "location": "Student-led · Los Angeles",
+  "mission": "Make astronomy and cosmology accessible through creative learning and community outreach.",
+  "email": "",
+  "interestFormUrl": "",
+  "navigation": [
+    {
+      "label": "About us",
+      "href": "/about/"
+    },
+    {
+      "label": "Create",
+      "href": "/create/"
+    },
+    {
+      "label": "Reach out",
+      "href": "/reach-out/"
+    }
+  ],
+  "branches": [
+    {
+      "number": "01",
+      "title": "Learn",
+      "description": "Small astronomy and cosmology projects, starting with questions we’d like to explore.",
+      "href": "/about/#learn",
+      "link": "About Learn",
+      "icon": "star",
+      "color": "yellow"
+    },
+    {
+      "number": "02",
+      "title": "Create",
+      "description": "Original space-inspired art and activities for our outreach projects. Collection coming soon.",
+      "href": "/create/",
+      "link": "View the gallery",
+      "icon": "planet",
+      "color": "pink"
+    },
+    {
+      "number": "03",
+      "title": "Reach out",
+      "description": "Our first K–5 astronomy craft workshop is in preparation.",
+      "href": "/reach-out/",
+      "link": "Our community projects",
+      "icon": "spark",
+      "color": "lavender"
+    }
+  ]
+}

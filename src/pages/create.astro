@@ -1,0 +1,79 @@
+---
+import { getEntry, getCollection, render } from 'astro:content';
+import '@fontsource/caveat/latin-400.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AccentText from '../components/AccentText.astro';
+import ScrapbookCard from '../components/ScrapbookCard.astro';
+import ScrapbookScene from '../components/ScrapbookScene.astro';
+import ArtworkViewer from '../components/ArtworkViewer.astro';
+import '../styles/scrapbook.css';
+const page = (await getEntry('pages', 'create'))!;
+const { Content } = await render(page);
+const artworks = (await getCollection('art', ({ data }) => data.approved && !!data.image)).sort(
+  (a, b) => a.data.order - b.data.order || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0),
+);
+---
+
+<BaseLayout {...page.data}>
+  <div class="scrapbook-page">
+    <div class="page-width">
+      <section class="page-intro scrapbook-intro" data-scrap-scene>
+        <div class="scrapbook-intro-copy">
+          <p class="eyebrow">{page.data.eyebrow}</p>
+          <h1>
+            <AccentText text={page.data.title} word="Art" />
+          </h1>
+          <div class="prose intro-prose">
+            <Content />
+          </div>
+        </div>
+        <ScrapbookScene />
+      </section>
+      <section class="scrapbook-gallery" aria-labelledby="gallery-heading">
+        <div class="scrapbook-gallery-heading">
+          <h2 id="gallery-heading">Gallery</h2>
+          <span class="scrapbook-heading-line" aria-hidden="true"></span>
+          <span class="label">ART + ASTRONOMY</span>
+        </div>
+        {artworks.length ? (
+          <div class="scrapbook-collection">
+            {artworks.map((artwork, index) => (
+              <div class:list={['scrapbook-slot', `scrapbook-slot--${index % 3}`]} data-scrap-scene>
+                <ScrapbookCard artwork={artwork} index={index} />
+                {index % 3 === 0 && <ScrapbookScene kind="planet" />}
+                {index % 3 === 2 && <ScrapbookScene kind="trail" />}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="scrapbook-empty-scene" data-scrap-scene>
+            <ScrapbookScene kind="trail" />
+            <div class="scrapbook-empty">
+              <span class="scrap-paper" aria-hidden="true"></span>
+              <span class="scrap-tape scrap-drift" aria-hidden="true"></span>
+              <span class="empty-star empty-star--one scrap-drift" aria-hidden="true">
+                ✦
+              </span>
+              <span class="empty-star empty-star--two scrap-drift" aria-hidden="true">
+                ✧
+              </span>
+              <span class="empty-orbit" aria-hidden="true">
+                <span>✧</span>
+              </span>
+              <h3>
+                First collection
+                <br />
+                coming soon
+              </h3>
+              <p>We’ll share original artwork and learning materials here when they’re ready.</p>
+            </div>
+          </div>
+        )}
+      </section>
+    </div>
+  </div>
+  {artworks.length > 0 && <ArtworkViewer />}
+  <script>
+    import '../scripts/scrapbook';
+  </script>
+</BaseLayout>

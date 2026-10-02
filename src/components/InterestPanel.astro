@@ -1,0 +1,23 @@
+---
+import { getEntry } from 'astro:content';
+const { data: site } = (await getEntry('site', 'main'))!;
+---
+
+<section class="interest-panel" aria-labelledby="interest-heading">
+  <h2 id="interest-heading">{site.interestFormUrl ? 'Contact us' : 'Interest form coming soon'}</h2>
+  <p>
+    {site.interestFormUrl
+      ? 'Tell us how you’d like to get involved.'
+      : 'We’ll add a way to get in touch here. No sign-ups are being collected yet.'}
+  </p>
+  {site.interestFormUrl && (
+    <a class="button" href={site.interestFormUrl}>
+      Open interest form <span aria-hidden="true">↗</span>
+    </a>
+  )}
+  {site.email && (
+    <a class="contact-email" href={`mailto:${site.email}`}>
+      {site.email}
+    </a>
+  )}
+</section>

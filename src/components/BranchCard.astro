@@ -1,0 +1,26 @@
+---
+import Doodle from './Doodle.astro';
+interface Props {
+  branch: {
+    number: string;
+    title: string;
+    description: string;
+    href: string;
+    link: string;
+    icon: string;
+    color: string;
+  };
+}
+const { branch } = Astro.props;
+---
+
+<article class:list={['branch-card', branch.color]}>
+  <Doodle kind={branch.icon} />
+  <span class="number">{branch.number}</span>
+  <h3 class:list={{ 'creative-title': branch.icon === 'planet' }}>{branch.title}</h3>
+  <p>{branch.description}</p>
+  <a href={branch.href}>
+    {branch.link}
+    <span aria-hidden="true">↗</span>
+  </a>
+</article>

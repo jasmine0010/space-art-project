@@ -1,0 +1,146 @@
+---
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+<div class:list={['space-art', { compact }]}>
+  <svg viewBox="0 0 620 570" fill="none" focusable="false" aria-hidden="true">
+    <defs>
+      <radialGradient id="planet-color" cx=".3" cy=".24" r=".9">
+        <stop stop-color="#E1CFFF" />
+        <stop offset=".62" stop-color="#B294EA" />
+        <stop offset="1" stop-color="#7C64B1" />
+      </radialGradient>
+      <linearGradient id="ring-color">
+        <stop stop-color="#FFF3A6" />
+        <stop offset=".55" stop-color="#E5CB72" />
+        <stop offset="1" stop-color="#FFF5C5" />
+      </linearGradient>
+    </defs>
+    <ellipse
+      cx="320"
+      cy="277"
+      rx="266"
+      ry="172"
+      transform="rotate(-33 320 277)"
+      stroke="#777087"
+      stroke-dasharray="3 11"
+    />
+    <path d="M86 438Q237 575 450 449" stroke="#777087" stroke-dasharray="3 9" />
+    <g class="planet-reaction">
+      <g class="planet-drift" transform="rotate(-24 328 258)">
+        <circle
+          cx="328"
+          cy="258"
+          r="133"
+          fill="url(#planet-color)"
+          stroke="#242038"
+          stroke-width="3"
+        />
+        <path
+          d="M238 182Q316 149 411 191M202 229Q302 190 444 230M199 278Q307 230 459 283M230 332Q346 289 429 338"
+          stroke="#8464B0"
+          stroke-opacity=".34"
+          stroke-width="16"
+          stroke-linecap="round"
+        />
+        <path
+          d="M196 230C36 235 38 289 190 309C334 329 591 292 551 239C542 228 508 220 460 222L462 251C551 265 393 301 230 282C158 273 140 266 195 255Z"
+          fill="url(#ring-color)"
+          stroke="#242038"
+          stroke-width="3"
+        />
+        <path d="M183 278C283 307 488 282 518 262" stroke="#A89458" stroke-width="2" />
+        <ellipse class="planet-eye" cx="292" cy="222" rx="5" ry="8" fill="#242038" />
+        <ellipse class="planet-eye" cx="339" cy="216" rx="5" ry="8" fill="#242038" />
+        <path
+          d="M307 239Q320 252 330 235"
+          stroke="#242038"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <ellipse class="planet-cheek" cx="278" cy="235" rx="10" ry="5" fill="#EFACD1" />
+        <ellipse class="planet-cheek" cx="354" cy="229" rx="10" ry="5" fill="#EFACD1" />
+        <path
+          d="M264 169Q292 153 317 155"
+          stroke="#F1E8FF"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+      </g>
+    </g>
+    <g class="little-ufo" transform="translate(80 411) rotate(17)">
+      <path d="M-38 14Q-35-38 2-36Q37-33 43 14" fill="#96D5D4" stroke="#242038" stroke-width="3" />
+      <path d="M-21-13Q-15-25-4-25" stroke="#E7FFFF" stroke-width="4" stroke-linecap="round" />
+      <ellipse cy="16" rx="67" ry="19" fill="#BBB5DF" stroke="#242038" stroke-width="3" />
+      <path d="M-53 22Q0 52 54 23" fill="#827EAB" stroke="#242038" stroke-width="3" />
+      <circle cx="-31" cy="18" r="4" fill="#FFF2A5" />
+      <circle cy="23" r="4" fill="#FFF2A5" />
+      <circle cx="31" cy="18" r="4" fill="#FFF2A5" />
+      <path d="M-7-4V0M10-4V0" stroke="#242038" stroke-width="3" stroke-linecap="round" />
+    </g>
+    <g class="little-rocket" transform="translate(518 92) rotate(33)">
+      <path d="M-14 18L-23 47L0 36L23 47L14 18" fill="#EBACCB" stroke="#242038" stroke-width="3" />
+      <path
+        d="M0-40C-24-17-20 14-13 33H13C20 14 24-17 0-40Z"
+        fill="#F7F1DC"
+        stroke="#242038"
+        stroke-width="3"
+      />
+      <path
+        d="M0-40Q-12-27-16-14H16Q12-27 0-40Z"
+        fill="#EBACCB"
+        stroke="#242038"
+        stroke-width="3"
+      />
+      <circle cy="5" r="9" fill="#8ECED9" stroke="#242038" stroke-width="3" />
+      <path d="M-8 40Q-14 61 0 73Q14 61 8 40" fill="#EADD96" />
+      <path d="M-4 42L0 62L4 42" fill="#F2B27F" />
+    </g>
+    <g transform="translate(99 94) rotate(-12)">
+      <path
+        d="M0-39L11-12L41-10L19 10L25 39L0 24L-25 39L-19 10L-41-10L-11-12Z"
+        fill="#F8E7A2"
+        stroke="#242038"
+        stroke-width="3"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M-9-1V4M9-1V4M-5 13Q0 18 6 12"
+        stroke="#242038"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
+    </g>
+    <path
+      d="M423 449V479M408 464H438M212 60V80M202 70H222M568 368V388M558 378H578M45 232V250M36 241H54"
+      stroke="#E8DDF6"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+    <circle cx="196" cy="444" r="3" fill="#EBDCA2" />
+    <circle cx="401" cy="67" r="2.5" fill="#EBDCA2" />
+    <circle cx="540" cy="466" r="2" fill="#EBDCA2" />
+    <circle cx="46" cy="344" r="2" fill="#F0EBFF" />
+    <circle cx="337" cy="493" r="2" fill="#F0EBFF" />
+    <path
+      d="M488 501L494 515L509 517L497 527L500 542L487 534L473 542L477 526L465 516L481 513Z"
+      fill="#C6AFEA"
+      stroke="#242038"
+      stroke-width="2"
+    />
+  </svg>
+  <button
+    class="planet-play"
+    type="button"
+    aria-label="Say hello to the planet"
+    title="Say hello to the planet"
+  >
+    <span class="planet-play-hint" aria-hidden="true">
+      ✦
+    </span>
+  </button>
+  <div class="space-sparkles" aria-hidden="true"></div>
+</div>

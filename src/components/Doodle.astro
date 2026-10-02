@@ -1,0 +1,71 @@
+---
+interface Props {
+  kind?: string;
+  class?: string;
+}
+const { kind = 'star', class: className = '' } = Astro.props;
+---
+
+<svg
+  class:list={['doodle', className]}
+  viewBox="0 0 100 100"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  {kind === 'planet' ? (
+    <>
+      <ellipse
+        cx="50"
+        cy="50"
+        rx="27"
+        ry="29"
+        fill="currentColor"
+        stroke="var(--ink)"
+        stroke-width="3"
+      />
+      <path
+        d="M24 42C-7 51 9 72 52 63S108 24 77 38"
+        stroke="var(--ink)"
+        stroke-width="5"
+        stroke-linecap="round"
+      />
+      <path d="M33 33Q40 24 51 26" stroke="white" stroke-width="4" stroke-linecap="round" />
+      <circle cx="43" cy="47" r="2.5" fill="var(--ink)" />
+      <circle cx="59" cy="44" r="2.5" fill="var(--ink)" />
+      <path d="M47 53Q53 57 57 51" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" />
+    </>
+  ) : kind === 'spark' ? (
+    <>
+      <path
+        d="M50 9L58 37L86 30L69 51L89 71L60 64L49 93L41 65L12 73L30 50L11 29L40 36Z"
+        fill="currentColor"
+        stroke="var(--ink)"
+        stroke-width="3"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M42 49L43 53M57 49L58 53M46 60Q51 64 56 59"
+        stroke="var(--ink)"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
+    </>
+  ) : (
+    <>
+      <path
+        d="M50 8L62 34L91 38L69 59L74 88L49 74L23 88L29 58L8 37L37 33Z"
+        fill="currentColor"
+        stroke="var(--ink)"
+        stroke-width="3"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M40 47V51M58 47V51M44 60Q50 65 56 59"
+        stroke="var(--ink)"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
+    </>
+  )}
+</svg>

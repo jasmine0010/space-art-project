@@ -1,0 +1,81 @@
+---
+import { getEntry } from 'astro:content';
+import '@fontsource/dm-sans/latin-400.css';
+import '@fontsource/dm-sans/latin-500.css';
+import '@fontsource/atkinson-hyperlegible/latin-400.css';
+import '@fontsource/atkinson-hyperlegible/latin-700.css';
+import '@fontsource/cormorant-garamond/latin-600-italic.css';
+import '../styles/global.css';
+import '../styles/interactions.css';
+import Doodle from '../components/Doodle.astro';
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const { data: site } = (await getEntry('site', 'main'))!;
+const path = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#121119" />
+    <title>{title} | {site.name}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={`${title} | ${site.name}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label={`${site.name} home`}>
+        <Doodle kind="star" />
+        <span>
+          {site.name}
+          <small>ASTRONOMY + ART + COMMUNITY</small>
+        </span>
+      </a>
+      <nav aria-label="Main navigation">
+        {site.navigation.map((item) => (
+          <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))}
+        <a
+          class="nav-cta"
+          href="/get-involved/"
+          aria-current={path === '/get-involved/' ? 'page' : undefined}
+        >
+          Get involved <span aria-hidden="true">✳</span>
+        </a>
+      </nav>
+    </header>
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand" href="/">
+          <Doodle kind="star" />
+          <span>
+            {site.name}
+            <small>A YOUTH-LED ASSOCIATION · LOS ANGELES</small>
+          </span>
+        </a>
+        <a href="/get-involved/">
+          Contact & involvement <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </footer>
+    <script>
+      import '../scripts/interactions';
+    </script>
+  </body>
+</html>
